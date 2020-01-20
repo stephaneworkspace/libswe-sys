@@ -9,6 +9,7 @@ edition = "2018"
 documentation = "https://github.com/stephaneworkspace/libswe-sys"
 repository = "https://github.com/stephaneworkspace/libswe-sys"
 description = "Astrology lib connected to the C lib Swiss ephemeris (just the c lib)"
+license-file = "LISCENSE"
 
 [dependencies]
 libc = "0.2"
