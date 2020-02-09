@@ -2,12 +2,12 @@
  * Traditional astrology for rust
  * ==============================
  *
- * Rust library by Stéphane Bressani (s.bressani@bluewin.ch)
+ * Rust library by Stéphane (s.bressani@bluewin.ch)
  *
  * Using swissephem c library by Astrodienst AG
  * by Dieter Koch and Alois Treindl (https://www.astro.com/ftp/swisseph/)
  *
- * The source code is released under an MIT License, which allows it to be used
+ * The source code is released under an CC License, which allows it to be used
  * also on commercial projects. This software uses the swiss ephemeris which is
  * licensed GPL.
  *
