@@ -225,7 +225,7 @@ impl Object {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct House {
     object_id: i32,
     longitude: f64,
