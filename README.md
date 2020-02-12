@@ -13,6 +13,9 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.4
+* Add -lm flag for math.h in compilation of wasm
+
 0.1.3
 * Add clone macro to missing structures
 

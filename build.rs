@@ -35,6 +35,7 @@ fn main() {
     cc::Build::new()
         .flag("-g")
         //        .flag("-09")
+        .flag("-lm") // math.h for wasm
         .flag("-Wall")
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swecl.c"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swedate.c"))
