@@ -34,7 +34,7 @@ pub fn radnorm(x: f64) -> f64 {
     unsafe { raw::swe_radnorm(x) }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct SplitDegResult {
     print: String,
     deg: i32,

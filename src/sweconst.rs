@@ -114,7 +114,7 @@ pub enum Bodies {
 }
 
 // Don't forgot to remove in exemple this structure
-#[derive(Debug, PartialEq, Display, EnumIter)]
+#[derive(Debug, Clone, PartialEq, Display, EnumIter)]
 pub enum ObjectType {
     Unknown,
     PlanetOrStar,
@@ -199,7 +199,7 @@ impl Bodies {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone)]
 pub struct Object {
     object_name: String,
     object_type: ObjectType,
