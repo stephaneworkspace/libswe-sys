@@ -13,8 +13,11 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.5
+* Add manually math.h from /Library/Developer/CommandLineTools/SDKs/MacOSX10.15.sdk/usr/include/math.h on my mac
+
 0.1.4
-* Add -lm flag for math.h in compilation of wasm
+* Add -lm flag for math.h in compilation of wasm (not compile)
 
 0.1.3
 * Add clone macro to missing structures
