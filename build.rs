@@ -33,10 +33,10 @@ fn main() {
     */
     let dir = env::var("CARGO_MANIFEST_DIR").unwrap();
     cc::Build::new()
-        .include("/usr/include")
         .flag("-g")
         //        .flag("-09")
         .flag("-Wall")
+        .file(Path::new(&dir).join("src/swisseph/2.08/src/math.h"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swecl.c"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swedate.c"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swehel.c"))

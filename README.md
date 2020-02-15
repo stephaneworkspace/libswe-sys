@@ -13,6 +13,10 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.7
+* Add math.h found on internet https://github.com/KnightOS/libc/blob/master/include/math.h
+
+
 0.1.6
 * Add standard path
   https://stackoverflow.com/questions/60188673/rust-ffi-wasm-yew-cargo-web-start-fatal-error-math-h-file-not-found
