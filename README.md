@@ -13,6 +13,9 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.13
+* Remove lib.h (try with wasm32-wasi)
+
 0.1.12
 * Adding stdio.h
 

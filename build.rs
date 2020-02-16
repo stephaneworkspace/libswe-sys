@@ -36,7 +36,7 @@ fn main() {
         .flag("-g")
         //        .flag("-09")
         .flag("-Wall")
-        .include(Path::new(&dir).join("src/clib"))
+        //.include(Path::new(&dir).join("src/clib"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swecl.c"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swedate.c"))
         .file(Path::new(&dir).join("src/swisseph/2.08/src/swehel.c"))
