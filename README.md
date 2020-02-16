@@ -13,8 +13,11 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.9
+* Try math.h again include a path
+
 0.1.8
-* Try math.h again with include a path
+* Try math.h again with include a path (yanked)
 
 0.1.7
 * Add math.h found on internet https://github.com/KnightOS/libc/blob/master/include/math.h
