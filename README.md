@@ -13,8 +13,11 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.11
+* Adding lib (compile)
+
 0.1.10
-* Adding missing include
+* Adding missing include (yanked)
 
 0.1.9
 * Try math.h again include a path
