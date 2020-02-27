@@ -227,9 +227,9 @@ impl Object {
 
 #[derive(Debug, Clone)]
 pub struct House {
-    object_id: i32,
-    longitude: f64,
-    split: SplitDegResult,
+    pub object_id: i32,
+    pub longitude: f64,
+    pub split: SplitDegResult,
 }
 
 impl House {
