@@ -27,12 +27,7 @@ use libswe_sys::sweconst::{
     Bodies, Calandar, House, Object, ObjectType, OptionalFlag,
 };
 use libswe_sys::swerust::{
-    handler_swe02,
-    handler_swe03,
-    handler_swe07,
-    handler_swe08,
-    handler_swe14,
-    //    handler_swe14::HousesResult,
+    handler_swe02, handler_swe03, handler_swe07, handler_swe08, handler_swe14,
 };
 use serde::Deserialize;
 use std::env;
@@ -140,7 +135,26 @@ fn main() {
     );
     println!("utc_to_jd: {:?}", utc_to_jd);
 
-    // To do struct for frontend (for draw canvas/svg)
+    // Whole signs
+    let result_w =
+        handler_swe14::houses(utc_to_jd.julian_day_ut, data.lat, data.lng, 'W');
+    //println!("House object: {:?}", result);
+    let mut house2: Vec<House> = Vec::new();
+    for (i, res) in result_w.clone().cusps.iter().enumerate() {
+        if i > 0 {
+            house2.push(House::new(i as i32, res.clone()));
+            if i + 1 > 12 {
+                break;
+            }
+        }
+    }
+
+    for h in house2 {
+        println!("{:?}", h);
+    }
+    println!("House (wohle signs): {:?}", result_w.clone());
+
+    // Wohle Signs
     let result =
         handler_swe14::houses(utc_to_jd.julian_day_ut, data.lat, data.lng, 'P');
     //println!("House object: {:?}", result);
@@ -157,7 +171,7 @@ fn main() {
     for h in house {
         println!("{:?}", h);
     }
-    println!("House: {:?}", result.clone());
+    println!("House (Placidus): {:?}", result.clone());
 
     println!("Exit and free memory swephem");
     handler_swe02::close();
