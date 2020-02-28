@@ -13,6 +13,9 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.16
+* Change in exemple, add whole signs ..°..'.."
+
 0.1.15
 * Small change in library, fields for house are public now
 
