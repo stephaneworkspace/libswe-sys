@@ -201,11 +201,11 @@ impl Bodies {
 
 #[derive(Debug, Clone)]
 pub struct Object {
-    object_name: String,
-    object_type: ObjectType,
-    longitude: f64,
-    latitude: f64,
-    split: SplitDegResult,
+    pub object_name: String,
+    pub object_type: ObjectType,
+    pub longitude: f64,
+    pub latitude: f64,
+    pub split: SplitDegResult,
 }
 
 impl Object {
