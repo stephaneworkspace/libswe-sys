@@ -24,7 +24,7 @@ use strum::{AsStaticRef, IntoEnumIterator};
 
 //use libswe_sys::sweconst::{Bodies, Calandar, HouseSystem};
 use libswe_sys::sweconst::{
-    Bodies, Calandar, House, Object, ObjectType, OptionalFlag,
+    Angle, Bodies, Calandar, House, Object, ObjectType, OptionalFlag,
 };
 use libswe_sys::swerust::{
     handler_swe02, handler_swe03, handler_swe07, handler_swe08, handler_swe14,
@@ -142,7 +142,9 @@ fn main() {
     let mut house2: Vec<House> = Vec::new();
     for (i, res) in result_w.clone().cusps.iter().enumerate() {
         if i > 0 {
-            house2.push(House::new(i as i32, res.clone()));
+            // No angle calculation when Nothing
+            let angle = Angle::Nothing;
+            house2.push(House::new(i as i32, res.clone(), angle));
             if i + 1 > 12 {
                 break;
             }
@@ -161,7 +163,30 @@ fn main() {
     let mut house: Vec<House> = Vec::new();
     for (i, res) in result.clone().cusps.iter().enumerate() {
         if i > 0 {
-            house.push(House::new(i as i32, res.clone()));
+            let angle;
+            /*
+            if result.clone().ascmc[0] == res.clone() {
+                angle = Angle::Asc;
+            }
+            if result.clone().ascmc[1] == res.clone() {
+                angle = Angle::Fc;
+            }
+            if result.clone().ascmc[2] == res.clone() {
+                angle = Angle::Desc;
+            }
+            if result.clone().ascmc[3] == res.clone() {
+                angle = Angle::Mc;
+            }*/
+            // This is tested with Placidus only
+            // the line above ascmc[?] don't work for Desc and Mc
+            angle = match i {
+                1 => Angle::Asc,
+                4 => Angle::Fc,
+                7 => Angle::Desc,
+                10 => Angle::Mc,
+                _ => Angle::Nothing,
+            };
+            house.push(House::new(i as i32, res.clone(), angle));
             if i + 1 > 12 {
                 break;
             }

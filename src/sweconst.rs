@@ -230,16 +230,27 @@ pub struct House {
     pub object_id: i32,
     pub longitude: f64,
     pub split: SplitDegResult,
+    pub angle: Angle,
 }
 
 impl House {
-    pub fn new(object_id: i32, longitude: f64) -> House {
+    pub fn new(object_id: i32, longitude: f64, angle: Angle) -> House {
         House {
             object_id: object_id,
             longitude: longitude,
             split: split_deg(longitude, 0),
+            angle: angle,
         }
     }
+}
+
+#[derive(Debug, Clone)]
+pub enum Angle {
+    Nothing = 0,
+    Asc = 1,
+    Fc = 2,
+    Desc = 3,
+    Mc = 4,
 }
 
 pub enum Calandar {
