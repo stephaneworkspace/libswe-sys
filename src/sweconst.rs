@@ -244,7 +244,7 @@ impl House {
     }
 }
 
-#[derive(Debug, Clone)]
+#[derive(Debug, Clone, PartialEq)]
 pub enum Angle {
     Nothing = 0,
     Asc = 1,
