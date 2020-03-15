@@ -13,6 +13,9 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.20
+* Add PartialEq macro to Object struct in sweconst
+
 0.1.19
 * Add enum to Object structure in sweconst
 

@@ -34,7 +34,7 @@ pub enum Signs {
     Pisces = 12,
 }
 
-#[derive(Debug, Clone, Display, EnumIter, AsStaticStr)]
+#[derive(Debug, Clone, PartialEq, Display, EnumIter, AsStaticStr)]
 pub enum Bodies {
     EclNut = -1,
     Sun = 0,
