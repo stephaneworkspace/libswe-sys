@@ -201,6 +201,7 @@ impl Bodies {
 
 #[derive(Debug, Clone)]
 pub struct Object {
+    pub object_enum: Bodies,
     pub object_name: String,
     pub object_type: ObjectType,
     pub longitude: f64,
@@ -210,12 +211,14 @@ pub struct Object {
 
 impl Object {
     pub fn new(
+        object_enum: Bodies,
         object_name: &str,
         object_type: ObjectType,
         longitude: f64,
         latitude: f64,
     ) -> Object {
         Object {
+            object_enum: object_enum,
             object_name: object_name.to_string(),
             object_type: object_type,
             longitude: longitude,

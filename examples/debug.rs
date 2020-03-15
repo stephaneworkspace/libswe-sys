@@ -89,6 +89,7 @@ fn main() {
                 OptionalFlag::Speed as i32,
             );
             object.push(Object::new(
+                bodies.clone(),
                 bodies.clone().as_static(),
                 bodies.clone().object_type(),
                 calc.longitude,
