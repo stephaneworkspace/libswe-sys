@@ -94,6 +94,7 @@ fn main() {
                 bodies.clone().object_type(),
                 calc.longitude,
                 calc.latitude,
+                calc.speed_longitude,
             ));
         }
     }

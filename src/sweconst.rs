@@ -199,6 +199,13 @@ impl Bodies {
     }
 }
 
+#[derive(Debug, Clone, PartialEq)]
+pub enum ObjectPos {
+    Stationary,
+    Direct,
+    Retrograde,
+}
+
 #[derive(Debug, Clone)]
 pub struct Object {
     pub object_enum: Bodies,
@@ -206,6 +213,8 @@ pub struct Object {
     pub object_type: ObjectType,
     pub longitude: f64,
     pub latitude: f64,
+    pub speed_longitude: f64,
+    pub object_pos: ObjectPos,
     pub split: SplitDegResult,
 }
 
@@ -216,13 +225,24 @@ impl Object {
         object_type: ObjectType,
         longitude: f64,
         latitude: f64,
+        speed_longitude: f64,
     ) -> Object {
+        let object_pos;
+        if f64::abs(speed_longitude) < 0.0003 {
+            object_pos = ObjectPos::Stationary;
+        } else if speed_longitude > 0.0 {
+            object_pos = ObjectPos::Direct;
+        } else {
+            object_pos = ObjectPos::Retrograde;
+        }
         Object {
             object_enum: object_enum,
             object_name: object_name.to_string(),
             object_type: object_type,
             longitude: longitude,
             latitude: latitude,
+            speed_longitude: speed_longitude,
+            object_pos: object_pos,
             split: split_deg(longitude, 0),
         }
     }
