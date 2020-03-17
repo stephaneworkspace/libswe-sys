@@ -36,14 +36,14 @@ pub fn radnorm(x: f64) -> f64 {
 
 #[derive(Debug, Clone)]
 pub struct SplitDegResult {
-    print: String,
-    deg: i32,
-    min: i32,
-    sec: i32,
-    cdegfr: f64,
+    pub print: String,
+    pub deg: i32,
+    pub min: i32,
+    pub sec: i32,
+    pub cdegfr: f64,
     //isgn: i32,
-    sign: Signs,
-    result: f64,
+    pub sign: Signs,
+    pub result: f64,
 }
 
 /// float to deg
