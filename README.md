@@ -13,6 +13,9 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.26
+* Change earth element color to orange/yellow
+
 0.1.25
 * Add hexadecimal color for zodiac, pub enum Element in sweconst
 

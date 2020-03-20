@@ -37,7 +37,7 @@ pub enum Signs {
 #[derive(Debug, Clone, Copy, PartialEq, AsStaticStr)]
 pub enum Element {
     Fire = 0xFF0000,  // Red
-    Earth = 0x5E6000, // Brown
+    Earth = 0xFFC200, // Orange/Yellow
     Wind = 0x00C42A,  // Green
     Water = 0x0B34FF, // Blue
 }
