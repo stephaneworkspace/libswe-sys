@@ -13,6 +13,9 @@ Go to exemple sand rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.24
+* Add Copy macro to Angle in sweconst
+
 0.1.23
 * Add enum iter to Angle in sweconst
 
