@@ -34,6 +34,14 @@ pub enum Signs {
     Pisces = 12,
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, AsStaticStr)]
+pub enum Element {
+    Fire = 0xFF0000,  // Red
+    Earth = 0x5E6000, // Brown
+    Wind = 0x00C42A,  // Green
+    Water = 0x0B34FF, // Blue
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
 pub enum Bodies {
     EclNut = -1,
