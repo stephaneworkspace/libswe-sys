@@ -13,6 +13,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.30
+* Add all swissephem files for all datas missing like chiron, ceres etc...
+
 0.1.29
 * Fix color for render on with background
 
