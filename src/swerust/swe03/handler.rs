@@ -137,7 +137,7 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
             let p_xx = xx.as_mut_ptr();
             let p_serr = serr.as_mut_ptr();
             let status;
-            if ipl == Bodies::SudNode {
+            if ipl == Bodies::SouthNode {
                 status = raw::swe_calc_ut(
                     tjd_ut,
                     Bodies::TrueNode as i32,
@@ -153,7 +153,7 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
                 .to_str()
                 .unwrap()
                 .to_string();
-            if ipl == Bodies::SudNode {
+            if ipl == Bodies::SouthNode {
                 xx[0] = xx[0] + 180.0;
                 if xx[0] >= 360.0 {
                     xx[0] = xx[0] - 360.0;
