@@ -53,9 +53,10 @@ fn main() {
     // let swe02_path_final = "/src/swisseph/sweph";
     // let swe02_path: String =
     //    env::var("CARGO_MANIFEST_DIR").unwrap() + swe02_path_final;
-    let swe02_path: &str = "/Users/stephanebressani/Code/Rust/astro_compute_swisseph/lib/libswe-sys/src/swisseph/sweph/";
-    println!("Set the path of ephemeris to: {}", swe02_path);
+    let swe02_path: &str =
+        "/Users/stephanebressani/Code/Rust/libswe-sys/src/swisseph/sweph";
     handler_swe02::set_ephe_path(&swe02_path);
+    println!("Set the path of ephemeris to: {}", &swe02_path);
     println!("Version swephem: {}", handler_swe02::version());
     println!("Get path of library: {}", handler_swe02::get_library_path());
 
@@ -82,7 +83,9 @@ fn main() {
     let mut object: Vec<Object> = Vec::new();
     let mut calc: handler_swe03::CalcUtResult;
     for bodies in Bodies::iter() {
-        if bodies.clone().object_type() == ObjectType::PlanetOrStar {
+        if bodies.clone().object_type() == ObjectType::PlanetOrStar
+            || bodies.clone().object_type() == ObjectType::Fiction
+        {
             calc = handler_swe03::calc_ut(
                 julday,
                 bodies.clone(),
