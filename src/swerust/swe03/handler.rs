@@ -17,6 +17,7 @@
  */
 use crate::raw;
 use crate::sweconst::Bodies;
+//use crate::swerust;
 use std::ffi::{CStr, CString};
 
 /*
@@ -56,24 +57,119 @@ pub struct CalcUtResult {
 pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
     let mut xx: [f64; 6] = [0.0; 6];
     let mut serr = [0; 255];
-    let result = unsafe {
-        let p_xx = xx.as_mut_ptr();
-        let p_serr = serr.as_mut_ptr();
-        let status = raw::swe_calc_ut(tjd_ut, ipl as i32, iflag, p_xx, p_serr);
-        let s_serr = CString::from(CStr::from_ptr(p_serr))
-            .to_str()
-            .unwrap()
-            .to_string();
-        CalcUtResult {
-            longitude: xx[0],
-            latitude: xx[1],
-            distance_au: xx[2],
-            speed_longitude: xx[3],
-            speed_latitude: xx[4],
-            speed_distance_au: xx[5],
-            serr: s_serr,
-            status: status,
-        }
-    };
+    let result;
+    if ipl == Bodies::FortunaPart {
+        result = unsafe {
+            let p_xx = xx.as_mut_ptr();
+            let p_serr = serr.as_mut_ptr();
+            let status =
+                raw::swe_calc_ut(tjd_ut, ipl as i32, iflag, p_xx, p_serr);
+            let s_serr = CString::from(CStr::from_ptr(p_serr))
+                .to_str()
+                .unwrap()
+                .to_string();
+            let mut xx_sun: [f64; 6] = [0.0; 6];
+            let mut xx_moon: [f64; 6] = [0.0; 6];
+            let p_xx_sun = xx_sun.as_mut_ptr();
+            let p_serr_sun = serr.as_mut_ptr();
+            let _status_sun = raw::swe_calc_ut(
+                tjd_ut,
+                Bodies::Sun as i32,
+                iflag,
+                p_xx_sun,
+                p_serr_sun,
+            );
+            let p_xx_moon = xx_moon.as_mut_ptr();
+            let p_serr_moon = serr.as_mut_ptr();
+            let _status_moon = raw::swe_calc_ut(
+                tjd_ut,
+                Bodies::Moon as i32,
+                iflag,
+                p_xx_moon,
+                p_serr_moon,
+            );
+            let _s_serr_sun = CString::from(CStr::from_ptr(p_serr_sun))
+                .to_str()
+                .unwrap()
+                .to_string();
+            let _s_serr_moon = CString::from(CStr::from_ptr(p_serr_moon))
+                .to_str()
+                .unwrap()
+                .to_string();
+            // TO do -> Check if ASC is differant between house type
+            // if i update this application to other
+            // than Placidus 'P' or Wohle 'W'
+            /*
+            let result_placidus = handler_swe14::houses(
+                utc_to_jd.julian_day_ut,
+                data.lat,
+                data.lng,
+                'P',
+            );
+            let asc_lon = result_placidus.cusps[0];
+            */
+
+            // TO DO SEPARATE FUNCTION FOR PART FORTUNA
+            // check algo https://github.com/flatangle/flatlib/blob/master/flatlib/ephem/tools.p
+            //if isDiurnal TO DO
+            let mut lon = xx_moon[0] - xx_sun[0];
+            let mut done = false;
+            while !done {
+                if lon >= 360.0 {
+                    lon = lon - 360.0;
+                } else {
+                    done = true;
+                }
+            }
+            CalcUtResult {
+                longitude: lon,
+                latitude: xx[1],
+                distance_au: xx[2],
+                speed_longitude: xx[3],
+                speed_latitude: xx[4],
+                speed_distance_au: xx[5],
+                serr: s_serr,
+                status: status,
+            }
+        };
+    } else {
+        result = unsafe {
+            let p_xx = xx.as_mut_ptr();
+            let p_serr = serr.as_mut_ptr();
+            let status;
+            if ipl == Bodies::SudNode {
+                status = raw::swe_calc_ut(
+                    tjd_ut,
+                    Bodies::TrueNode as i32,
+                    iflag,
+                    p_xx,
+                    p_serr,
+                );
+            } else {
+                status =
+                    raw::swe_calc_ut(tjd_ut, ipl as i32, iflag, p_xx, p_serr);
+            }
+            let s_serr = CString::from(CStr::from_ptr(p_serr))
+                .to_str()
+                .unwrap()
+                .to_string();
+            if ipl == Bodies::SudNode {
+                xx[0] = xx[0] + 180.0;
+                if xx[0] >= 360.0 {
+                    xx[0] = xx[0] - 360.0;
+                }
+            }
+            CalcUtResult {
+                longitude: xx[0],
+                latitude: xx[1],
+                distance_au: xx[2],
+                speed_longitude: xx[3],
+                speed_latitude: xx[4],
+                speed_distance_au: xx[5],
+                serr: s_serr,
+                status: status,
+            }
+        };
+    }
     result
 }
