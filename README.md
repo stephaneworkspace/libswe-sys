@@ -9,10 +9,13 @@ Therefore, if you want to use libswe-sys in your commercial projects, you must a
 
 # Use
 
-Go to exemple sand rename data_example.json to data.json and run cargo run
+Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.27
+* Add bodies colors in sweconst
+
 0.1.26
 * Change earth element color to orange/yellow
 

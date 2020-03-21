@@ -42,6 +42,18 @@ pub enum Element {
     Water = 0x0B34FF, // Blue
 }
 
+pub const COLOR_BODIE_SUN: i32 = 0xFFA300; // Orange
+pub const COLOR_BODIE_MOON: i32 = 0xFFF800; // Yellow
+pub const COLOR_BODIE_MERCURY: i32 = 0x6900FF; // Indigo
+pub const COLOR_BODIE_VENUS: i32 = 0xFF009E; // Pink
+pub const COLOR_BODIE_MARS: i32 = 0xFF1212; // Red small ligth
+pub const COLOR_BODIE_JUPITER: i32 = 0x12A5FF; // Blue ligth
+pub const COLOR_BODIE_SATURN: i32 = 0xCC0000; // Red CC
+pub const COLOR_BODIE_URANUS: i32 = 0xA89402; // Brown
+pub const COLOR_BODIE_NEPTUNE: i32 = 0x00B526; // Green small ligth
+pub const COLOR_BODIE_PLUTO: i32 = 0xBF3A3A; // Red special
+pub const COLOR_BODIE_OTHER: i32 = 0x6B6B6B; // Gray
+
 #[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
 pub enum Bodies {
     EclNut = -1,

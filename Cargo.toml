@@ -1,6 +1,6 @@
 [package]
 name = "libswe-sys"
-version = "0.1.26"
+version = "0.1.27"
 authors = ["Stéphane Bressani <s.bressani@bluewin.ch>"]
 keyword = ["astrology", "swiss ephemem", "planet", "ephemeris"]
 links = "libswe"
