@@ -13,6 +13,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.28
+* Add a method in Bodie struct in sweconst
+
 0.1.27
 * Add bodies colors in sweconst
 
