@@ -43,7 +43,7 @@ pub enum Element {
 }
 
 pub const COLOR_BODIE_SUN: i32 = 0xFFA300; // Orange
-pub const COLOR_BODIE_MOON: i32 = 0xFFF800; // Yellow
+pub const COLOR_BODIE_MOON: i32 = 0xB5B510; // Yellow
 pub const COLOR_BODIE_MERCURY: i32 = 0x6900FF; // Indigo
 pub const COLOR_BODIE_VENUS: i32 = 0xFF009E; // Pink
 pub const COLOR_BODIE_MARS: i32 = 0xFF1212; // Red small ligth
