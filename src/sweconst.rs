@@ -81,6 +81,8 @@ pub enum Bodies {
     IntpApog = 21,
     IntpPerg = 22,
     NPlanets = 23,
+    SudNode = 24,
+    FortunaPart = 25,
     // SE_FICT_OFFSET = 40,
     // SE_NFICT_ELEM = 15,
     // SE_AST_OFFSET = 10000,
