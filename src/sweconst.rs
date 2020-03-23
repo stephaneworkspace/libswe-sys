@@ -416,31 +416,23 @@ pub enum HouseSystem {
     Regiomontanus,
     WholeSign,
 }
-/*
-impl HouseSystem {
-    /// Return unit for call in c
-    fn hsys(self) -> char {
-        match self {
-            HouseSystem::Campanus => 'C',
-            HouseSystem::Equal => 'E',
-            HouseSystem::Koch => 'K',
-            HouseSystem::Placidus => 'P',
-            HouseSystem::Porphyrius => 'O',
-            HouseSystem::Regiomontanus => 'R',
-            HouseSystem::WholeSign => 'W',
-        }
-    }
 
-    /// Return name of house in english
-    fn name(self) -> &'static str {
+#[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
+pub enum Aspects {
+    Opposition = 1,
+    Square = 2,
+    Trine = 3,
+    Sextile = 4,
+}
+
+impl Aspects {
+    // (Aspects, Orbes)
+    pub fn angle(self) -> (u16, u16) {
         match self {
-            HouseSystem::Campanus => "Campanus",
-            HouseSystem::Equal => "Equal",
-            HouseSystem::Koch => "Koch",
-            HouseSystem::Placidus => "Placidus",
-            HouseSystem::Porphyrius => "Porphyrius",
-            HouseSystem::Regiomontanus => "Regiomontanus",
-            HouseSystem::WholeSign => "Whole sign",
+            Aspects::Opposition => (0, 10),
+            Aspects::Square => (180, 8),
+            Aspects::Trine => (120, 7),
+            Aspects::Sextile => (60, 5),
         }
     }
-}*/
+}
