@@ -419,9 +419,10 @@ pub enum HouseSystem {
 
 #[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
 pub enum Aspects {
+    Conjunction = 0,
     Opposition = 1,
-    Square = 2,
-    Trine = 3,
+    Trine = 2,
+    Square = 3,
     Sextile = 4,
 }
 
@@ -429,9 +430,10 @@ impl Aspects {
     // (Aspects, Orbes)
     pub fn angle(self) -> (u16, u16) {
         match self {
-            Aspects::Opposition => (0, 10),
-            Aspects::Square => (180, 8),
+            Aspects::Conjunction => (0, 10),
+            Aspects::Opposition => (180, 8),
             Aspects::Trine => (120, 7),
+            Aspects::Square => (90, 6),
             Aspects::Sextile => (60, 5),
         }
     }
