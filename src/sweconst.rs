@@ -15,8 +15,13 @@
  * projects, you must adhere to the GPL license or buy a Swiss Ephemeris
  * commercial license.
  */
+extern crate serde;
+extern crate serde_derive;
+extern crate serde_json;
 extern crate strum;
 use crate::swerust::handler_swe17::{split_deg, SplitDegResult};
+
+use serde::{Deserialize, Serialize};
 
 #[derive(Debug, Clone, Display, EnumIter)]
 pub enum Signs {
@@ -417,7 +422,17 @@ pub enum HouseSystem {
     WholeSign,
 }
 
-#[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
+#[derive(
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Display,
+    EnumIter,
+    AsStaticStr,
+    Serialize,
+    Deserialize,
+)]
 pub enum Aspects {
     Conjunction = 0,
     Opposition = 1,
