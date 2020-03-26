@@ -452,4 +452,13 @@ impl Aspects {
             Aspects::Sextile => (60, 5),
         }
     }
+    pub fn maj(self) -> bool {
+        match self {
+            Aspects::Conjunction => true,
+            Aspects::Opposition => true,
+            Aspects::Trine => true,
+            Aspects::Square => true,
+            Aspects::Sextile => true,
+        }
+    }
 }
