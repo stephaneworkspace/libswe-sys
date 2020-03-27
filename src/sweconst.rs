@@ -440,8 +440,8 @@ pub enum Aspects {
     Square = 3,
     Sextile = 4,
     Inconjunction = 5,
-    Semisquare = 6,
-    Sesquisquare = 7,
+    Sesquisquare = 6,
+    Semisquare = 7,
     Semisextile = 8,
 }
 
