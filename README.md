@@ -13,6 +13,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.39
+* Fix fortuna part
+
 0.1.38
 * Add algorythme for fortuna part in swerust03
 

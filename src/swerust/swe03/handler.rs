@@ -147,7 +147,7 @@ pub fn calc_ut_fp(
         let result_houses =
             swerust::handler_swe14::houses(tjd_ut, geolat, geolong, hsys);
         let asc_lon = result_houses.cusps[0];
-        let mc_lon = result_houses.cusps[0];
+        let mc_lon = result_houses.cusps[9];
         let mc_lat = 0.0;
         let compute_sun = eq_coords(xx_sun[0], xx_sun[1]);
         let compute_mc = eq_coords(mc_lon, mc_lat);
