@@ -63,13 +63,7 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
         let p_serr = serr.as_mut_ptr();
         let status;
         if ipl == Bodies::SouthNode {
-            status = raw::swe_calc_ut(
-                tjd_ut,
-                Bodies::TrueNode as i32,
-                iflag,
-                p_xx,
-                p_serr,
-            );
+            status = raw::swe_calc_ut(tjd_ut, Bodies::TrueNode as i32, iflag, p_xx, p_serr);
         } else {
             status = raw::swe_calc_ut(tjd_ut, ipl as i32, iflag, p_xx, p_serr);
         }
@@ -98,13 +92,7 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
 }
 
 /// Fortuna Part
-pub fn calc_ut_fp(
-    tjd_ut: f64,
-    geolat: f64,
-    geolong: f64,
-    hsys: char,
-    iflag: i32,
-) -> CalcUtResult {
+pub fn calc_ut_fp(tjd_ut: f64, geolat: f64, geolong: f64, hsys: char, iflag: i32) -> CalcUtResult {
     let ipl = Bodies::FortunaPart;
     let mut xx: [f64; 6] = [0.0; 6];
     let mut serr = [0; 255];
@@ -120,22 +108,11 @@ pub fn calc_ut_fp(
         let mut xx_moon: [f64; 6] = [0.0; 6];
         let p_xx_sun = xx_sun.as_mut_ptr();
         let p_serr_sun = serr.as_mut_ptr();
-        let _status_sun = raw::swe_calc_ut(
-            tjd_ut,
-            Bodies::Sun as i32,
-            iflag,
-            p_xx_sun,
-            p_serr_sun,
-        );
+        let _status_sun = raw::swe_calc_ut(tjd_ut, Bodies::Sun as i32, iflag, p_xx_sun, p_serr_sun);
         let p_xx_moon = xx_moon.as_mut_ptr();
         let p_serr_moon = serr.as_mut_ptr();
-        let _status_moon = raw::swe_calc_ut(
-            tjd_ut,
-            Bodies::Moon as i32,
-            iflag,
-            p_xx_moon,
-            p_serr_moon,
-        );
+        let _status_moon =
+            raw::swe_calc_ut(tjd_ut, Bodies::Moon as i32, iflag, p_xx_moon, p_serr_moon);
         let _s_serr_sun = CString::from(CStr::from_ptr(p_serr_sun))
             .to_str()
             .unwrap()
@@ -144,19 +121,14 @@ pub fn calc_ut_fp(
             .to_str()
             .unwrap()
             .to_string();
-        let result_houses =
-            swerust::handler_swe14::houses(tjd_ut, geolat, geolong, hsys);
-        let asc_lon = result_houses.cusps[0];
-        let mc_lon = result_houses.cusps[9];
+        let result_houses = swerust::handler_swe14::houses(tjd_ut, geolat, geolong, hsys);
+        let asc_lon = result_houses.cusps[0].clone();
+        let mc_lon = result_houses.cusps[9].clone();
         let mc_lat = 0.0;
         let compute_sun = eq_coords(xx_sun[0], xx_sun[1]);
         let compute_mc = eq_coords(mc_lon, mc_lat);
-        let sw_is_diurnal = is_above_horizon(
-            compute_sun.0,
-            compute_sun.1,
-            compute_mc.0,
-            compute_mc.1,
-        );
+        let sw_is_diurnal =
+            is_above_horizon(compute_sun.0, compute_sun.1, compute_mc.0, compute_mc.1);
 
         let mut lon = if sw_is_diurnal {
             asc_lon + xx_moon[0] - xx_sun[0]
@@ -193,9 +165,7 @@ fn eq_coords(lon: f64, lat: f64) -> (f64, f64) {
     let epson = (23.44 as f64).to_radians(); // the earth inclinaison
 
     // Declinaison in radian
-    let decl = (epson.sin() * lambda.sin() * beta.cos()
-        + epson.cos() * beta.sin())
-    .asin();
+    let decl = (epson.sin() * lambda.sin() * beta.cos() + epson.cos() * beta.sin()).asin();
 
     // Equatorial distance
     let ed = (lambda.cos() * beta.cos() / decl.cos()).acos();
@@ -208,12 +178,9 @@ fn eq_coords(lon: f64, lat: f64) -> (f64, f64) {
     };
 
     // Correctness of RA if longitude is close to 0° or 180° in a radius of 5°
-    if (closest_distance(lon, 0.0)).abs() < 5.0
-        || (closest_distance(lon, 180.0)).abs() < 5.0
-    {
+    if (closest_distance(lon, 0.0)).abs() < 5.0 || (closest_distance(lon, 180.0)).abs() < 5.0 {
         let a = ra.sin() * decl.cos();
-        let b =
-            epson.cos() * lambda.sin() * beta.cos() - epson.sin() * beta.sin();
+        let b = epson.cos() * lambda.sin() * beta.cos() - epson.sin() * beta.sin();
         if (a - b).abs() > 0.0003 {
             ra = (360.0 as f64).to_radians() - ra;
         }
