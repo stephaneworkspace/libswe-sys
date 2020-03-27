@@ -439,10 +439,14 @@ pub enum Aspects {
     Trine = 2,
     Square = 3,
     Sextile = 4,
+    Inconjunction = 5,
+    Semisquare = 6,
+    Sesquisquare = 7,
+    Semisextile = 8,
 }
 
 impl Aspects {
-    // (Aspects, Orbes)
+    /// Aspect propriety -> (Aspects, Orbes)
     pub fn angle(self) -> (u16, u16) {
         match self {
             Aspects::Conjunction => (0, 10),
@@ -450,8 +454,14 @@ impl Aspects {
             Aspects::Trine => (120, 7),
             Aspects::Square => (90, 6),
             Aspects::Sextile => (60, 5),
+            Aspects::Inconjunction => (150, 2),
+            Aspects::Sesquisquare => (135, 1),
+            Aspects::Semisquare => (45, 1),
+            Aspects::Semisextile => (30, 1),
         }
     }
+
+    /// Major aspect -> bool
     pub fn maj(self) -> bool {
         match self {
             Aspects::Conjunction => true,
@@ -459,6 +469,7 @@ impl Aspects {
             Aspects::Trine => true,
             Aspects::Square => true,
             Aspects::Sextile => true,
+            _ => false,
         }
     }
 }
