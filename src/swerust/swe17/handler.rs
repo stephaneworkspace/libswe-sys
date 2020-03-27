@@ -84,7 +84,7 @@ pub fn split_deg(ddeg: f64, roundflag: i32) -> SplitDegResult {
         sec: sec[0],
         cdegfr: cdegfr[0],
         // isgn: isgn[0],
-        sign: Signs::iter().nth(sign_calc).unwrap(),
+        sign: Signs::iter().nth(sign_calc).unwrap_or(Signs::Aries),
         result: result,
     }
 }
