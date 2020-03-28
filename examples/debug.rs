@@ -203,6 +203,16 @@ fn main() {
     }
     println!("House (Placidus): {:?}", result.clone());
 
+    // Fortuna part
+    let calcfp = handler_swe03::calc_ut_fp(
+        julday,
+        data.lat,
+        data.lng,
+        'P',
+        OptionalFlag::Speed as i32,
+    );
+    println!("Fortuna Part: {}", calcfp.longitude);
+
     println!("Exit and free memory swephem");
     handler_swe02::close();
 }

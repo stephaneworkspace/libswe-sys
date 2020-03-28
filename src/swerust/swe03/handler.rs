@@ -98,6 +98,7 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
 }
 
 /// Fortuna Part
+/// Only lng is valid, the speed is unknow because this object is calculated
 pub fn calc_ut_fp(
     tjd_ut: f64,
     geolat: f64,
@@ -146,8 +147,8 @@ pub fn calc_ut_fp(
             .to_string();
         let result_houses =
             swerust::handler_swe14::houses(tjd_ut, geolat, geolong, hsys);
-        let asc_lon = result_houses.cusps[0].clone();
-        let mc_lon = result_houses.cusps[9].clone();
+        let asc_lon = result_houses.cusps[1].clone();
+        let mc_lon = result_houses.cusps[10].clone();
         let mc_lat = 0.0;
         let compute_sun = eq_coords(xx_sun[0], xx_sun[1]);
         let compute_mc = eq_coords(mc_lon, mc_lat);
@@ -157,7 +158,13 @@ pub fn calc_ut_fp(
             compute_mc.0,
             compute_mc.1,
         );
-
+        /*println!(
+            "sw_is_diurnal: {}asc: {}moon: {}sun: {}",
+            sw_is_diurnal.clone(),
+            asc_lon.clone(),
+            xx_moon[0].clone(),
+            xx_sun[0].clone()
+        );*/
         let mut lon = if sw_is_diurnal {
             asc_lon + xx_moon[0] - xx_sun[0]
         } else {
