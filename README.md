@@ -13,11 +13,14 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.43
+* Fix fortuna part
+
 0.1.42
-* Fix little bug
+* Fix little bug in fortuna part
 
 0.1.41
-* Fix unwrap
+* Fix unwrap (bug negative sign)
 
 0.1.40
 * Fix fortuna part
