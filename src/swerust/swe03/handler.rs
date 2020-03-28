@@ -137,6 +137,14 @@ pub fn calc_ut_fp(tjd_ut: f64, geolat: f64, geolong: f64, hsys: char, iflag: i32
         };
         let mut done = false;
         while !done {
+            if lon < 0.0 {
+                lon = lon + 360.0;
+            } else {
+                done = true;
+            }
+        }
+        done = false
+        while !done {
             if lon >= 360.0 {
                 lon = lon - 360.0;
             } else {
