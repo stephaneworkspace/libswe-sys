@@ -1,12 +1,12 @@
 [package]
 name = "libswe-sys"
-version = "0.1.43"
+version = "0.1.45"
 authors = ["Stéphane Bressani <s.bressani@bluewin.ch>"]
 keyword = ["astrology", "swiss ephemem", "planet", "ephemeris"]
 links = "libswe"
 #build = "build.rs"
 edition = "2018"
-documentation = "https://github.com/stephaneworkspace/libswe-sys"
+documentation = "https://docs.rs/libswe-sys/0.1.43/libswe_sys/"
 repository = "https://github.com/stephaneworkspace/libswe-sys"
 description = "Astrology lib connected to the C lib Swiss ephemeris (just the c lib)"
 license-file = "LICENSE"

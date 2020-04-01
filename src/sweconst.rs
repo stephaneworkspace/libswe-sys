@@ -23,6 +23,12 @@ use crate::swerust::handler_swe17::{split_deg, SplitDegResult};
 
 use serde::{Deserialize, Serialize};
 
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum Language {
+    English = 0,
+    French = 1,
+}
+
 #[derive(Debug, Clone, Display, EnumIter)]
 pub enum Signs {
     Aries = 1,
@@ -37,6 +43,41 @@ pub enum Signs {
     Capricorn = 10,
     Aquarius = 11,
     Pisces = 12,
+}
+
+impl Signs {
+    pub fn text(self, lang: Language) -> String {
+        match lang {
+            Language::English => match self {
+                Signs::Aries => "Aries".to_string(),
+                Signs::Taurus => "Taurus".to_string(),
+                Signs::Gemini => "Gemini".to_string(),
+                Signs::Cancer => "Cancer".to_string(),
+                Signs::Leo => "Leo".to_string(),
+                Signs::Virgo => "Virgo".to_string(),
+                Signs::Libra => "Libra".to_string(),
+                Signs::Scorpio => "Scorpio".to_string(),
+                Signs::Sagittarius => "Sagittarius".to_string(),
+                Signs::Capricorn => "Capricorn".to_string(),
+                Signs::Aquarius => "Aquarius".to_string(),
+                Signs::Pisces => "Pisces".to_string(),
+            },
+            Language::French => match self {
+                Signs::Aries => "Belier".to_string(),
+                Signs::Taurus => "Taureau".to_string(),
+                Signs::Gemini => "Gemaux".to_string(),
+                Signs::Cancer => "Cancer".to_string(),
+                Signs::Leo => "Lio".to_string(),
+                Signs::Virgo => "Vierge".to_string(),
+                Signs::Libra => "Balance".to_string(),
+                Signs::Scorpio => "Scorpion".to_string(),
+                Signs::Sagittarius => "Sagittaire".to_string(),
+                Signs::Capricorn => "Capricorne".to_string(),
+                Signs::Aquarius => "Verseau".to_string(),
+                Signs::Pisces => "Poisson".to_string(),
+            },
+        }
+    }
 }
 
 #[derive(Debug, Clone, Copy, PartialEq, AsStaticStr)]

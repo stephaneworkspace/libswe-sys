@@ -13,6 +13,10 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.44
+* Add documentation to cargo
+* Add text english/french for signs
+
 0.1.43
 * Fix fortuna part
 
