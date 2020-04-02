@@ -23,12 +23,14 @@ use crate::swerust::handler_swe17::{split_deg, SplitDegResult};
 use serde::{Deserialize, Serialize};
 use strum::AsStaticRef;
 
+/// Language available
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Language {
     English = 0,
     French = 1,
 }
 
+/// Zodiac
 #[derive(Debug, Clone, Display, EnumIter)]
 pub enum Signs {
     Aries = 1,
@@ -46,6 +48,7 @@ pub enum Signs {
 }
 
 impl Signs {
+    /// Text for translation
     pub fn text(self, lang: Language) -> String {
         match lang {
             Language::English => match self {
@@ -80,6 +83,7 @@ impl Signs {
     }
 }
 
+/// Element
 #[derive(Debug, Clone, Copy, PartialEq, AsStaticStr)]
 pub enum Element {
     Fire = 0xFF0000,  // Red
@@ -100,6 +104,7 @@ pub const COLOR_BODIE_NEPTUNE: i32 = 0x00B526; // Green small ligth
 pub const COLOR_BODIE_PLUTO: i32 = 0xBF3A3A; // Red special
 pub const COLOR_BODIE_OTHER: i32 = 0x6B6B6B; // Gray
 
+/// Bodies
 #[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
 pub enum Bodies {
     EclNut = -1,
@@ -181,7 +186,7 @@ pub enum Bodies {
     AsteroidNessus = 10000 + 7066,
 }
 
-// Don't forgot to remove in exemple this structure
+/// Object type
 #[derive(Debug, Clone, PartialEq, Display, EnumIter)]
 pub enum ObjectType {
     Unknown,
