@@ -20,8 +20,8 @@ extern crate serde_derive;
 extern crate serde_json;
 extern crate strum;
 use crate::swerust::handler_swe17::{split_deg, SplitDegResult};
-
 use serde::{Deserialize, Serialize};
+use strum::AsStaticRef;
 
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Language {
@@ -192,6 +192,7 @@ pub enum ObjectType {
 }
 
 impl Bodies {
+    /// Object type of Bodies
     pub fn object_type(self) -> ObjectType {
         match self {
             Bodies::EclNut => ObjectType::Unknown,
@@ -267,6 +268,8 @@ impl Bodies {
             Bodies::AsteroidNessus => ObjectType::Asteroid,
         }
     }
+
+    /// Object color
     pub fn object_color(self) -> i32 {
         match self {
             Bodies::EclNut => COLOR_BODIE_OTHER,
@@ -340,6 +343,36 @@ impl Bodies {
             Bodies::AsteroidVulcano => COLOR_BODIE_OTHER,
             Bodies::AsteroidZeus => COLOR_BODIE_OTHER,
             Bodies::AsteroidNessus => COLOR_BODIE_OTHER,
+        }
+    }
+
+    /// Text translate
+    pub fn text(self, lang: Language) -> String {
+        match lang {
+            Language::English => match self {
+                Bodies::TrueNode => "North node".to_string(),
+                Bodies::SouthNode => "South node".to_string(),
+                Bodies::FortunaPart => "Fortuna part".to_string(),
+                _ => self.as_static().to_string(),
+            },
+            Language::French => match self {
+                Bodies::Sun => "Soleil".to_string(),
+                Bodies::Moon => "Lune".to_string(),
+                Bodies::Mercury => "Mercure".to_string(),
+                Bodies::Venus => "Venus".to_string(),
+                Bodies::Mars => "Mars".to_string(),
+                Bodies::Jupiter => "Jupiter".to_string(),
+                Bodies::Saturn => "Saturne".to_string(),
+                Bodies::Uranus => "Uranus".to_string(),
+                Bodies::Neptune => "Neptune".to_string(),
+                Bodies::Pluto => "Pluton".to_string(),
+                Bodies::TrueNode => "Noeud nord".to_string(),
+                Bodies::Chiron => "Chiron".to_string(),
+                Bodies::Ceres => "Ceres".to_string(),
+                Bodies::SouthNode => "Noeud sud".to_string(),
+                Bodies::FortunaPart => "Part de fortune".to_string(),
+                _ => self.as_static().to_string(),
+            },
         }
     }
 }
