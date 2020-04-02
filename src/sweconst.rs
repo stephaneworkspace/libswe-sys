@@ -513,4 +513,31 @@ impl Aspects {
             _ => false,
         }
     }
+
+    pub fn text(self, lang: Language) -> String {
+        match lang {
+            Language::English => match self {
+                Aspects::Conjunction => "Conjunction".to_string(),
+                Aspects::Opposition => "Opposition".to_string(),
+                Aspects::Trine => "Trine".to_string(),
+                Aspects::Square => "Square".to_string(),
+                Aspects::Sextile => "Sextile".to_string(),
+                Aspects::Inconjunction => "Inconjunction".to_string(),
+                Aspects::Sesquisquare => "Sesquisquare".to_string(),
+                Aspects::Semisquare => "Semisquare".to_string(),
+                Aspects::Semisextile => "Semisextile".to_string(),
+            },
+            Language::French => match self {
+                Aspects::Conjunction => "Conjonction".to_string(),
+                Aspects::Opposition => "Opposition".to_string(),
+                Aspects::Trine => "Trigone".to_string(),
+                Aspects::Square => "Quadrature".to_string(),
+                Aspects::Sextile => "Sextile".to_string(),
+                Aspects::Inconjunction => "Quinconce".to_string(),
+                Aspects::Sesquisquare => "Sesqui-carré".to_string(),
+                Aspects::Semisquare => "Demi-carré".to_string(),
+                Aspects::Semisextile => "Demi-sextile".to_string(),
+            },
+        }
+    }
 }

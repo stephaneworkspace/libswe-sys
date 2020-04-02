@@ -13,6 +13,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.45
+* Add text english/french for aspects
+
 0.1.44
 * Add documentation to cargo
 * Add text english/french for signs
