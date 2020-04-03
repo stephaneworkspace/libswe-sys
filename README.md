@@ -13,6 +13,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
 # Version
+0.1.47
+* Add comments to sweconst for rust documentation
+
 0.1.46
 * Add text english/french for aspects
 
