@@ -30,6 +30,13 @@ pub enum Language {
     French = 1,
 }
 
+/// Theme (for crate "astrology")
+#[derive(Debug, Clone, Copy, PartialEq)]
+pub enum Theme {
+    Light = 0,
+    Dark = 1,
+}
+
 /// Zodiac
 #[derive(Debug, Clone, Display, EnumIter)]
 pub enum Signs {
