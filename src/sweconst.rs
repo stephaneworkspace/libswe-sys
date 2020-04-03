@@ -382,6 +382,7 @@ impl Bodies {
     }
 }
 
+/// Object position (direction)
 #[derive(Debug, Clone, PartialEq)]
 pub enum ObjectPos {
     Stationary,
@@ -389,6 +390,7 @@ pub enum ObjectPos {
     Retrograde,
 }
 
+/// Object
 #[derive(Debug, Clone)]
 pub struct Object {
     pub object_enum: Bodies,
@@ -402,6 +404,7 @@ pub struct Object {
 }
 
 impl Object {
+    /// Constructor
     pub fn new(
         object_enum: Bodies,
         object_name: &str,
@@ -431,6 +434,7 @@ impl Object {
     }
 }
 
+/// House
 #[derive(Debug, Clone)]
 pub struct House {
     pub object_id: i32,
@@ -440,6 +444,7 @@ pub struct House {
 }
 
 impl House {
+    /// Constructor
     pub fn new(object_id: i32, longitude: f64, angle: Angle) -> House {
         House {
             object_id: object_id,
@@ -450,6 +455,7 @@ impl House {
     }
 }
 
+/// Angle
 #[derive(Debug, Clone, Copy, PartialEq, EnumIter)]
 pub enum Angle {
     Nothing = 0,
@@ -459,11 +465,13 @@ pub enum Angle {
     Mc = 4,
 }
 
+/// Type of calandar
 pub enum Calandar {
     Julian = 0,
     Gregorian = 1,
 }
 
+/// Optional flag swissephem
 pub enum OptionalFlag {
     JplEph = 1,
     SwissEph = 2,
@@ -490,7 +498,9 @@ pub enum OptionalFlag {
     JplHorApprox = 512 * 1024,
 }
 
+/// House system
 /// I have put in enum only the most important houses methods
+/// To do
 pub enum HouseSystem {
     Campanus,
     Equal,
