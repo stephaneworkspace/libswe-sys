@@ -88,6 +88,24 @@ impl Signs {
             },
         }
     }
+
+    /// Element of "Signs"
+    pub fn element(self) -> Element {
+        match self {
+            Signs::Aries => Element::Fire,
+            Signs::Taurus => Element::Earth,
+            Signs::Gemini => Element::Wind,
+            Signs::Cancer => Element::Water,
+            Signs::Leo => Element::Fire,
+            Signs::Virgo => Element::Earth,
+            Signs::Libra => Element::Wind,
+            Signs::Scorpio => Element::Water,
+            Signs::Sagittarius => Element::Fire,
+            Signs::Capricorn => Element::Earth,
+            Signs::Aquarius => Element::Wind,
+            Signs::Pisces => Element::Water,
+        }
+    }
 }
 
 /// Element
@@ -97,6 +115,26 @@ pub enum Element {
     Earth = 0xFFC200, // Orange/Yellow
     Wind = 0x00C42A,  // Green
     Water = 0x0B34FF, // Blue
+}
+
+impl Element {
+    /// Text for translation
+    pub fn text(self, lang: Language) -> String {
+        match lang {
+            Language::English => match self {
+                Element::Fire => "Fire".to_string(),
+                Element::Earth => "Earth".to_string(),
+                Element::Wind => "Wind".to_string(),
+                Element::Water => "Water".to_string(),
+            },
+            Language::French => match self {
+                Element::Fire => "Feu".to_string(),
+                Element::Earth => "Terre".to_string(),
+                Element::Wind => "Wind".to_string(),
+                Element::Water => "Water".to_string(),
+            },
+        }
+    }
 }
 
 pub const COLOR_BODIE_SUN: i32 = 0xFFA300; // Orange
