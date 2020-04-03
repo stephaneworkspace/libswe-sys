@@ -135,6 +135,25 @@ impl Element {
             },
         }
     }
+
+    /// Color
+    pub fn color(self, theme: Theme) -> u32 {
+        match theme {
+            Theme::Light => match self {
+                Element::Fire => 0xFF0000,  // Red
+                Element::Earth => 0xFFC200, // Orange/Yellow
+                Element::Wind => 0x00C42A,  // Green
+                Element::Water => 0x0B34FF, // Blue
+            },
+            // To do
+            Theme::Dark => match self {
+                Element::Fire => 0xFF0000,  // Red
+                Element::Earth => 0xFFC200, // Orange/Yellow
+                Element::Wind => 0x00C42A,  // Green
+                Element::Water => 0x0B34FF, // Blue
+            },
+        }
+    }
 }
 
 pub const COLOR_BODIE_SUN: i32 = 0xFFA300; // Orange
