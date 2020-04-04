@@ -106,6 +106,11 @@ impl Signs {
             Signs::Pisces => Element::Water,
         }
     }
+
+    /// Color of "Signs" by "Element" color
+    pub fn color(self, theme: Theme) -> u32 {
+        self.element().color(theme)
+    }
 }
 
 /// Element
