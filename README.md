@@ -12,7 +12,12 @@ Therefore, if you want to use libswe-sys in your commercial projects, you must a
 Go to exemple and rename data_example.json to data.json and run cargo run
 --example debug
 
+I recommand to use the library crate "astrology" for draw the chart
+
 # Version
+0.1.48
+* Add theme support for "astrology" crate bridge
+
 0.1.47
 * Add comments to sweconst for rust documentation
 

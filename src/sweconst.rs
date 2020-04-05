@@ -37,6 +37,33 @@ pub enum Theme {
     Dark = 1,
 }
 
+/// Colors (for crate "astrology")
+pub enum Colors {
+    Primary,
+    Secondary,
+    Background,
+}
+
+impl Theme {
+    /// Colors (for crate "astrology")
+    pub fn color(self, color: Colors) -> i32 {
+        match color {
+            Colors::Primary => match self {
+                Theme::Light => 0x000000, // Black
+                Theme::Dark => 0xFFFFFF,  // White
+            },
+            Colors::Secondary => match self {
+                Theme::Light => 0xFFFFFF, // White
+                Theme::Dark => 0x000000,  // Black
+            },
+            Colors::Background => match self {
+                Theme::Light => 0xFFFFFF, // White
+                Theme::Dark => 0x000000,  // Black
+            },
+        }
+    }
+}
+
 /// Zodiac
 #[derive(Debug, Clone, Display, EnumIter)]
 pub enum Signs {
@@ -160,18 +187,6 @@ impl Element {
         }
     }
 }
-
-pub const COLOR_BODIE_SUN: i32 = 0xFFA300; // Orange
-pub const COLOR_BODIE_MOON: i32 = 0xB5B510; // Yellow
-pub const COLOR_BODIE_MERCURY: i32 = 0x6900FF; // Indigo
-pub const COLOR_BODIE_VENUS: i32 = 0xFF009E; // Pink
-pub const COLOR_BODIE_MARS: i32 = 0xFF1212; // Red small ligth
-pub const COLOR_BODIE_JUPITER: i32 = 0x12A5FF; // Blue ligth
-pub const COLOR_BODIE_SATURN: i32 = 0xCC0000; // Red CC
-pub const COLOR_BODIE_URANUS: i32 = 0xA89402; // Brown
-pub const COLOR_BODIE_NEPTUNE: i32 = 0x00B526; // Green small ligth
-pub const COLOR_BODIE_PLUTO: i32 = 0xBF3A3A; // Red special
-pub const COLOR_BODIE_OTHER: i32 = 0x6B6B6B; // Gray
 
 /// Bodies
 #[derive(Debug, Clone, Copy, PartialEq, Display, EnumIter, AsStaticStr)]
@@ -344,79 +359,35 @@ impl Bodies {
     }
 
     /// Object color
-    pub fn object_color(self) -> i32 {
-        match self {
-            Bodies::EclNut => COLOR_BODIE_OTHER,
-            Bodies::Sun => COLOR_BODIE_SUN,
-            Bodies::Moon => COLOR_BODIE_MOON,
-            Bodies::Mercury => COLOR_BODIE_MERCURY,
-            Bodies::Venus => COLOR_BODIE_VENUS,
-            Bodies::Mars => COLOR_BODIE_MARS,
-            Bodies::Jupiter => COLOR_BODIE_JUPITER,
-            Bodies::Saturn => COLOR_BODIE_SATURN,
-            Bodies::Uranus => COLOR_BODIE_URANUS,
-            Bodies::Neptune => COLOR_BODIE_NEPTUNE,
-            Bodies::Pluto => COLOR_BODIE_PLUTO,
-            Bodies::MeanNode => COLOR_BODIE_OTHER,
-            Bodies::TrueNode => COLOR_BODIE_OTHER,
-            Bodies::MeanApog => COLOR_BODIE_OTHER,
-            Bodies::OscuApog => COLOR_BODIE_OTHER,
-            Bodies::Earth => COLOR_BODIE_OTHER,
-            Bodies::Chiron => COLOR_BODIE_OTHER,
-            Bodies::Pholus => COLOR_BODIE_OTHER,
-            Bodies::Ceres => COLOR_BODIE_OTHER,
-            Bodies::Pallas => COLOR_BODIE_OTHER,
-            Bodies::Juno => COLOR_BODIE_OTHER,
-            Bodies::Vesta => COLOR_BODIE_OTHER,
-            Bodies::IntpApog => COLOR_BODIE_OTHER,
-            Bodies::IntpPerg => COLOR_BODIE_OTHER,
-            Bodies::NPlanets => COLOR_BODIE_OTHER,
-            Bodies::SouthNode => COLOR_BODIE_OTHER,
-            Bodies::FortunaPart => COLOR_BODIE_OTHER,
-            Bodies::Cupido => COLOR_BODIE_OTHER,
-            Bodies::Hades => COLOR_BODIE_OTHER,
-            Bodies::Zeus => COLOR_BODIE_OTHER,
-            Bodies::Kronos => COLOR_BODIE_OTHER,
-            Bodies::Apollon => COLOR_BODIE_OTHER,
-            Bodies::Admetos => COLOR_BODIE_OTHER,
-            Bodies::Vulkanus => COLOR_BODIE_OTHER,
-            Bodies::Poseidon => COLOR_BODIE_OTHER,
-            Bodies::Isis => COLOR_BODIE_OTHER,
-            Bodies::Nibiru => COLOR_BODIE_OTHER,
-            Bodies::Harrington => COLOR_BODIE_OTHER,
-            Bodies::NeptuneLeverrier => COLOR_BODIE_OTHER,
-            Bodies::NeptuneAdams => COLOR_BODIE_OTHER,
-            Bodies::PlutoLowell => COLOR_BODIE_OTHER,
-            Bodies::PlutoPickering => COLOR_BODIE_OTHER,
-            Bodies::AsteroidAstera => COLOR_BODIE_OTHER,
-            Bodies::AsteroidHebe => COLOR_BODIE_OTHER,
-            Bodies::AsteroidIris => COLOR_BODIE_OTHER,
-            Bodies::AsteroidFlora => COLOR_BODIE_OTHER,
-            Bodies::AsteroidMetis => COLOR_BODIE_OTHER,
-            Bodies::AsteroidHygiea => COLOR_BODIE_OTHER,
-            Bodies::AsteroidUrania => COLOR_BODIE_OTHER,
-            Bodies::AsteroidIsis => COLOR_BODIE_OTHER,
-            Bodies::AsteroidHilda => COLOR_BODIE_OTHER,
-            Bodies::AsteroidPhilosophia => COLOR_BODIE_OTHER,
-            Bodies::AsteroidSophia => COLOR_BODIE_OTHER,
-            Bodies::AsteroidAletheia => COLOR_BODIE_OTHER,
-            Bodies::AsteroidSapientia => COLOR_BODIE_OTHER,
-            Bodies::AsteroidThule => COLOR_BODIE_OTHER,
-            Bodies::AsteroidUrsula => COLOR_BODIE_OTHER,
-            Bodies::AsteroidEros => COLOR_BODIE_OTHER,
-            Bodies::AsteroidCupido => COLOR_BODIE_OTHER,
-            Bodies::AsteroidHidalgo => COLOR_BODIE_OTHER,
-            Bodies::AsteroidLilith => COLOR_BODIE_OTHER,
-            Bodies::AsteroidAmor => COLOR_BODIE_OTHER,
-            Bodies::AsteroidKama => COLOR_BODIE_OTHER,
-            Bodies::AsteroidAphrodite => COLOR_BODIE_OTHER,
-            Bodies::AsteroidApollo => COLOR_BODIE_OTHER,
-            Bodies::AsteroidDamocles => COLOR_BODIE_OTHER,
-            Bodies::AsteroidCruithne => COLOR_BODIE_OTHER,
-            Bodies::AsteroidPoseidon => COLOR_BODIE_OTHER,
-            Bodies::AsteroidVulcano => COLOR_BODIE_OTHER,
-            Bodies::AsteroidZeus => COLOR_BODIE_OTHER,
-            Bodies::AsteroidNessus => COLOR_BODIE_OTHER,
+    pub fn object_color(self, theme: Theme) -> i32 {
+        match theme {
+            Theme::Light => match self {
+                Bodies::Sun => 0xFFA300,     // Orange
+                Bodies::Moon => 0xB5B510,    // Yellow
+                Bodies::Mercury => 0x6900FF, // Indiigo
+                Bodies::Venus => 0xFF009E,   // Pink
+                Bodies::Mars => 0xFF1212,    // Red small ligth
+                Bodies::Jupiter => 0x12A5FF, // Blue ligth
+                Bodies::Saturn => 0xCC0000,  // Red CC
+                Bodies::Uranus => 0xA89402,  // Brown
+                Bodies::Neptune => 0x00B526, // Green small ligth
+                Bodies::Pluto => 0xBF3A3A,   // Red special
+                _ => 0x6B6B6B,               // Gray
+            },
+            // To do test colors
+            Theme::Dark => match self {
+                Bodies::Sun => 0xFFA300,     // Orange
+                Bodies::Moon => 0xB5B510,    // Yellow
+                Bodies::Mercury => 0x6900FF, // Indiigo
+                Bodies::Venus => 0xFF009E,   // Pink
+                Bodies::Mars => 0xFF1212,    // Red small ligth
+                Bodies::Jupiter => 0x12A5FF, // Blue ligth
+                Bodies::Saturn => 0xCC0000,  // Red CC
+                Bodies::Uranus => 0xA89402,  // Brown
+                Bodies::Neptune => 0x00B526, // Green small ligth
+                Bodies::Pluto => 0xBF3A3A,   // Red special
+                _ => 0x6B6B6B,               // Gray
+            },
         }
     }
 
