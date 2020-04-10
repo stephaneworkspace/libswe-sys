@@ -41,6 +41,7 @@ pub enum Theme {
 pub enum Colors {
     Primary,
     Secondary,
+    // Angle,
     Background,
 }
 
@@ -143,10 +144,10 @@ impl Signs {
 /// Element
 #[derive(Debug, Clone, Copy, PartialEq, AsStaticStr)]
 pub enum Element {
-    Fire = 0xFF0000,  // Red
-    Earth = 0xFFC200, // Orange/Yellow
-    Wind = 0x00C42A,  // Green
-    Water = 0x0B34FF, // Blue
+    Fire,
+    Earth,
+    Wind,
+    Water,
 }
 
 impl Element {

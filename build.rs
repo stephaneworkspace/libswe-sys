@@ -19,6 +19,16 @@ use std::env;
 use std::path::Path;
 
 fn main() {
+    let host = std::env::var("HOST").unwrap();
+    let target = std::env::var("TARGET").unwrap();
+
+    if target.contains("wasm32") {
+        if host.contains("darwin") {
+            // brew install llvm
+            std::env::set_var("CC", "/usr/local/opt/llvm/bin/clang");
+            std::env::set_var("AR", "/usr/local/opt/llvm/bin/llvm-ar");
+        }
+    }
     /*
      * Old Way
      * Not work with cargo
