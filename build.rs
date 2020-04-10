@@ -25,7 +25,8 @@ fn main() {
     if target.contains("wasm32") {
         if host.contains("darwin") {
             // brew install llvm
-            std::env::set_var("CC", "/usr/local/opt/llvm/bin/clang");
+            //std::env::set_var("CC", "/usr/local/opt/llvm/bin/clang");
+            std::env::set_var("CC", "/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang");
             std::env::set_var("AR", "/usr/local/opt/llvm/bin/llvm-ar");
         }
     }

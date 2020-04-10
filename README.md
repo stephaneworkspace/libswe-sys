@@ -15,6 +15,10 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 I recommand to use the library crate "astrology" for draw the chart
 
 # Version
+0.1.50
+* Support wasm for mac os catalina with the path
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin
+
 0.1.49
 * Support wasm for mac os
 
