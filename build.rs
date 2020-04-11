@@ -43,6 +43,7 @@ fn main() {
     */
     let dir = env::var("CARGO_MANIFEST_DIR").unwrap();
     cc::Build::new()
+        .include("/usr/include")
         .flag("-g")
         //        .flag("-09")
         .flag("-Wall")

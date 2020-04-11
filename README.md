@@ -15,6 +15,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 I recommand to use the library crate "astrology" for draw the chart
 
 # Version
+0.1.52
+* Add /usr/include for the math.h and other c header
+
 0.1.51
 * Support for mac os catalina with good path llvm this time (brew install llvm)
 
