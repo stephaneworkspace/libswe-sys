@@ -27,7 +27,7 @@ fn main() {
             // brew install llvm
             std::env::set_var("CC", "/usr/local/opt/llvm/bin/clang");
             std::env::set_var("AR", "/usr/local/opt/llvm/bin/llvm-ar");
-            path_header = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include".to_string();
+            path_header = "/Library/Developer/CommandLineTools/SDKs/MacOSX.sdk/usr/include".to_string();
         }
     }
     /*
