@@ -21,12 +21,13 @@ use std::path::Path;
 fn main() {
     let host = std::env::var("HOST").unwrap();
     let target = std::env::var("TARGET").unwrap();
-
+    let mut path_header = "/usr/include".to_string();
     if target.contains("wasm32") {
         if host.contains("darwin") {
             // brew install llvm
             std::env::set_var("CC", "/usr/local/opt/llvm/bin/clang");
             std::env::set_var("AR", "/usr/local/opt/llvm/bin/llvm-ar");
+            path_header = "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX.sdk/usr/include".to_string();
         }
     }
     /*
@@ -43,7 +44,7 @@ fn main() {
     */
     let dir = env::var("CARGO_MANIFEST_DIR").unwrap();
     cc::Build::new()
-        .include("/usr/include")
+        .include(path_header)
         .flag("-g")
         //        .flag("-09")
         .flag("-Wall")
