@@ -19,9 +19,9 @@ use std::env;
 use std::path::Path;
 
 fn main() {
+    /*
     let host = std::env::var("HOST").unwrap();
     let target = std::env::var("TARGET").unwrap();
-    /*
     let mut path_header = "/usr/include".to_string();
     if target.contains("wasm32") {
         if host.contains("darwin") {
