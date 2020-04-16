@@ -21,6 +21,7 @@ use std::path::Path;
 fn main() {
     let host = std::env::var("HOST").unwrap();
     let target = std::env::var("TARGET").unwrap();
+    /*
     let mut path_header = "/usr/include".to_string();
     if target.contains("wasm32") {
         if host.contains("darwin") {
@@ -29,7 +30,7 @@ fn main() {
             std::env::set_var("AR", "/usr/local/opt/llvm/bin/llvm-ar");
             path_header = "/usr/local/opt/llvm/include".to_string();
         }
-    }
+    }*/
     /*
      * Old Way
      * Not work with cargo
