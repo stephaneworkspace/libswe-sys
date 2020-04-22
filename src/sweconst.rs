@@ -20,11 +20,13 @@ extern crate serde_derive;
 extern crate serde_json;
 extern crate strum;
 use crate::swerust::handler_swe17::{split_deg, SplitDegResult};
+use num_derive::FromPrimitive;
+//use num_traits::FromPrimitive;
 use serde::{Deserialize, Serialize};
 use strum::AsStaticRef;
 
 /// Language available
-#[derive(Debug, Clone, Copy, PartialEq)]
+#[derive(Debug, Clone, Copy, PartialEq, FromPrimitive)]
 pub enum Language {
     English = 0,
     French = 1,

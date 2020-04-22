@@ -15,6 +15,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 I recommand to use the library crate "astrology" for draw the chart
 
 # Version
+0.1.57
+* Add a crate for enum match use in crate libastro
+
 0.1.56
 * It's compile this time, 0.1.55 is yanked
 
