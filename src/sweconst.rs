@@ -25,14 +25,14 @@ use num_derive::FromPrimitive;
 use serde::{Deserialize, Serialize};
 use strum::AsStaticRef;
 
-/// Language available
+/// Language available (for crate "astrology", "libastro")
 #[derive(Debug, Clone, Copy, PartialEq, FromPrimitive)]
 pub enum Language {
     English = 0,
     French = 1,
 }
 
-/// Theme (for crate "astrology")
+/// Theme (for crate "astrology", "libastro")
 #[derive(Debug, Clone, Copy, PartialEq)]
 pub enum Theme {
     Light = 0,
