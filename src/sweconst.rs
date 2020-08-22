@@ -633,3 +633,74 @@ impl Aspects {
         }
     }
 }
+
+/// Filter aspect
+#[derive(
+    Debug,
+    Clone,
+    Copy,
+    PartialEq,
+    Display,
+    EnumIter,
+    AsStaticStr,
+    Serialize,
+    Deserialize,
+    FromPrimitive,
+)]
+pub enum AspectsFilter {
+    AllAspects = 0,
+    AllMajorsAspects = 1,
+    Conjunction = 2,
+    Opposition = 3,
+    Trine = 4,
+    Square = 5,
+    Sextile = 6,
+    AllMinorsAspect = 7,
+    Inconjunction = 8,
+    Sesquisquare = 9,
+    Semisquare = 10,
+    Semisextile = 11,
+    NoAspects = 12,
+}
+
+impl AspectsFilter {
+    /// Vector of aspects in AspectsFilter
+    pub fn vec_aspects(self) -> Vec<Aspects> {
+        match self {
+            AspectsFilter::AllAspects => vec![
+                Aspects::Conjunction,
+                Aspects::Opposition,
+                Aspects::Trine,
+                Aspects::Square,
+                Aspects::Sextile,
+                Aspects::Inconjunction,
+                Aspects::Sesquisquare,
+                Aspects::Semisquare,
+                Aspects::Semisextile,
+            ],
+            AspectsFilter::AllMajorsAspects => vec![
+                Aspects::Conjunction,
+                Aspects::Opposition,
+                Aspects::Trine,
+                Aspects::Square,
+                Aspects::Sextile,
+            ],
+            AspectsFilter::Conjunction => vec![Aspects::Conjunction],
+            AspectsFilter::Opposition => vec![Aspects::Opposition],
+            AspectsFilter::Trine => vec![Aspects::Trine],
+            AspectsFilter::Square => vec![Aspects::Square],
+            AspectsFilter::Sextile => vec![Aspects::Sextile],
+            AspectsFilter::AllMinorsAspect => vec![
+                Aspects::Inconjunction,
+                Aspects::Sesquisquare,
+                Aspects::Semisquare,
+                Aspects::Semisextile,
+            ],
+            AspectsFilter::Inconjunction => vec![Aspects::Inconjunction],
+            AspectsFilter::Sesquisquare => vec![Aspects::Sesquisquare],
+            AspectsFilter::Semisquare => vec![Aspects::Semisquare],
+            AspectsFilter::Semisextile => vec![Aspects::Semisextile],
+            _ => Vec::new(),
+        }
+    }
+}
