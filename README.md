@@ -11,6 +11,13 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 I recommand to use the library crate "astrology" for draw the chart
 
 # Version
+
+0.2.2
+* Fix License
+
+0.2.1
+* Fix License
+
 0.2.0
 * Small change, but compatible with astrology 0.2
 
