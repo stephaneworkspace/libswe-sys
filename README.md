@@ -1,5 +1,5 @@
 # Traditional astrology for rust
-Rust library by Stéphane Bressani (s.bressani@bluewin.ch)
+Rust library by Stéphane Bressani
 
 Using swissephem c library by Astrodienst AG by Dieter Koch and Alois Treindl (https://www.astro.com/ftp/swisseph/)
 
@@ -11,6 +11,9 @@ Go to exemple and rename data_example.json to data.json and run cargo run
 I recommand to use the library crate "astrology" for draw the chart
 
 # Version
+
+0.2.3
+* Change in comments
 
 0.2.2
 * Fix License
