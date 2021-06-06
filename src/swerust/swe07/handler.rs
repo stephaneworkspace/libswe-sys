@@ -35,7 +35,7 @@ pub fn pheno_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> PhenoUtResult {
             apparent_dimaeter_of_disc: attr[3],
             apparent_magnitude: attr[4],
             serr: s_serr,
-            status: status,
+            status,
         }
     };
     result

@@ -61,13 +61,13 @@ pub fn split_deg(ddeg: f64, roundflag: i32) -> SplitDegResult {
         sec[0],
     );
     SplitDegResult {
-        print: print,
+        print,
         deg: deg[0],
         min: min[0],
         sec: sec[0],
         cdegfr: cdegfr[0],
         // isgn: isgn[0],
         sign: Signs::iter().nth(sign_calc).unwrap_or(Signs::Aries),
-        result: result,
+        result,
     }
 }

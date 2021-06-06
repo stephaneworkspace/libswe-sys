@@ -48,7 +48,7 @@ pub fn houses(
     };
     HousesResult {
         cusps: cusps.to_vec(),
-        ascmc: ascmc,
-        result: result,
+        ascmc,
+        result,
     }
 }

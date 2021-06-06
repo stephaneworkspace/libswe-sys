@@ -117,7 +117,7 @@ pub fn utc_to_jd(
             julian_day_et: dret[0],
             julian_day_ut: dret[1],
             err: s_serr,
-            result: result,
+            result,
         }
     }
 }

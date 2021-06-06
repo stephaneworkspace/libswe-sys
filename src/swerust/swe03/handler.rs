@@ -61,9 +61,9 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
             .unwrap()
             .to_string();
         if ipl == Bodies::SouthNode {
-            xx[0] = xx[0] + 180.0;
+            xx[0] += 180.0;
             if xx[0] >= 360.0 {
-                xx[0] = xx[0] - 360.0;
+                xx[0] -= 360.0;
             }
         }
         CalcUtResult {
@@ -74,7 +74,7 @@ pub fn calc_ut(tjd_ut: f64, ipl: Bodies, iflag: i32) -> CalcUtResult {
             speed_latitude: xx[4],
             speed_distance_au: xx[5],
             serr: s_serr,
-            status: status,
+            status,
         }
     };
     result
@@ -130,8 +130,8 @@ pub fn calc_ut_fp(
             .to_string();
         let result_houses =
             swerust::handler_swe14::houses(tjd_ut, geolat, geolong, hsys);
-        let asc_lon = result_houses.cusps[1].clone();
-        let mc_lon = result_houses.cusps[10].clone();
+        let asc_lon = result_houses.cusps[1];
+        let mc_lon = result_houses.cusps[10];
         let mc_lat = 0.0;
         let compute_sun = eq_coords(xx_sun[0], xx_sun[1]);
         let compute_mc = eq_coords(mc_lon, mc_lat);
@@ -156,7 +156,7 @@ pub fn calc_ut_fp(
         let mut done = false;
         while !done {
             if lon < 0.0 {
-                lon = lon + 360.0;
+                lon += 360.0;
             } else {
                 done = true;
             }
@@ -164,7 +164,7 @@ pub fn calc_ut_fp(
         done = false;
         while !done {
             if lon >= 360.0 {
-                lon = lon - 360.0;
+                lon -= 360.0;
             } else {
                 done = true;
             }
@@ -177,7 +177,7 @@ pub fn calc_ut_fp(
             speed_latitude: xx[4],
             speed_distance_au: xx[5],
             serr: s_serr,
-            status: status,
+            status,
         }
     };
     result
@@ -188,7 +188,7 @@ fn eq_coords(lon: f64, lat: f64) -> (f64, f64) {
     // Convert to radian
     let lambda = lon.to_radians();
     let beta = lat.to_radians();
-    let epson = (23.44 as f64).to_radians(); // the earth inclinaison
+    let epson = (23.44_f64).to_radians(); // the earth inclinaison
 
     // Declinaison in radian
     let decl = (epson.sin() * lambda.sin() * beta.cos()
@@ -202,7 +202,7 @@ fn eq_coords(lon: f64, lat: f64) -> (f64, f64) {
     let mut ra = if lon < 100.0 {
         ed
     } else {
-        (360.0 as f64).to_radians() - ed
+        (360.0_f64).to_radians() - ed
     };
 
     // Correctness of RA if longitude is close to 0° or 180° in a radius of 5°
@@ -213,7 +213,7 @@ fn eq_coords(lon: f64, lat: f64) -> (f64, f64) {
         let b =
             epson.cos() * lambda.sin() * beta.cos() - epson.sin() * beta.sin();
         if (a - b).abs() > 0.0003 {
-            ra = (360.0 as f64).to_radians() - ra;
+            ra = (360.0_f64).to_radians() - ra;
         }
     }
     (ra.to_degrees(), decl.to_degrees())
@@ -253,7 +253,7 @@ fn closest_distance(angle1: f64, angle2: f64) -> f64 {
 
 /// Normalize angle between -180° and 180°
 fn znorm(mut angle: f64) -> f64 {
-    angle = angle % 360.0;
+    angle %= 360.0;
     if angle <= 180.0 {
         angle
     } else {

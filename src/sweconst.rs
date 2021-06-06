@@ -448,13 +448,13 @@ impl Object {
             object_pos = ObjectPos::Retrograde;
         }
         Object {
-            object_enum: object_enum,
+            object_enum,
             object_name: object_name.to_string(),
-            object_type: object_type,
-            longitude: longitude,
-            latitude: latitude,
-            speed_longitude: speed_longitude,
-            object_pos: object_pos,
+            object_type,
+            longitude,
+            latitude,
+            speed_longitude,
+            object_pos,
             split: split_deg(longitude, 0),
         }
     }
@@ -473,10 +473,10 @@ impl House {
     /// Constructor
     pub fn new(object_id: i32, longitude: f64, angle: Angle) -> House {
         House {
-            object_id: object_id,
-            longitude: longitude,
+            object_id,
+            longitude,
             split: split_deg(longitude, 0),
-            angle: angle,
+            angle,
         }
     }
 }
@@ -497,6 +497,7 @@ pub enum Calandar {
     Gregorian = 1,
 }
 
+#[allow(clippy::upper_case_acronyms)]
 /// Optional flag swissephem
 pub enum OptionalFlag {
     JplEph = 1,
@@ -579,14 +580,8 @@ impl Aspects {
 
     /// Major aspect -> bool
     pub fn maj(self) -> bool {
-        match self {
-            Aspects::Conjunction => true,
-            Aspects::Opposition => true,
-            Aspects::Trine => true,
-            Aspects::Square => true,
-            Aspects::Sextile => true,
-            _ => false,
-        }
+        use Aspects::*;
+        matches!(self, Conjunction | Opposition | Trine | Square | Sextile)
     }
 
     pub fn text(self, lang: Language) -> String {

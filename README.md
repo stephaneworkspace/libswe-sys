@@ -12,6 +12,9 @@ I recommand to use the library crate "astrology" for draw the chart
 
 # Version
 
+0.2.4
+* Passed source to clippy
+
 0.2.3
 * Change in comments
 
